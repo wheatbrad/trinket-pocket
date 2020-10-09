@@ -7,19 +7,19 @@
  *
  * @return  {object}            Pocket
  */
-function PocketFactory() {
+function PocketFactory({coins, trinkets} = {}) {
     
     const obj = Object.create(null);
     const staticPocket = new WeakMap();
-    
 
-    obj.buyTrinkets = function (numTrinkets) {}
-    
+    obj.buyTrinkets = function (numTrinkets = 1) {} 
 
-    obj.sellTrinkets = function () {}
+    obj.sellTrinkets = function (numTrinkets = 1) {}
+
 
 
     return obj;
 }
+
 
 module.exports = PocketFactory;
