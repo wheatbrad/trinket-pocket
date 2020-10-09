@@ -1,0 +1,17 @@
+{
+  "name": "trinket-pocket",
+  "version": "1.0.0",
+  "description": "Object with methods to buy and sell trinkets.",
+  "main": "",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Brad Runnels",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.5.2"
+  }
+}
