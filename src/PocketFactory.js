@@ -2,12 +2,11 @@
 /**
  * Factory function initializes and returns Pocket objects
  *
- * @param   {number}  coins     initial number of coins in Pocket
- * @param   {number}  trinkets  initial number of tinkets in Pocket
+ * @param   {object}    Initial number of coins and trinkets
  *
- * @return  {object}            Pocket
+ * @return  {object}    Pocket
  */
-function PocketFactory({coins, trinkets} = {}) {
+function PocketFactory({coins, trinkets} = {coins:100, trinkets:0}) {
     
     const obj = Object.create(null);
     const staticPocket = new WeakMap();
@@ -16,7 +15,7 @@ function PocketFactory({coins, trinkets} = {}) {
 
     obj.sellTrinkets = function (numTrinkets = 1) {}
 
-
+    obj.coins = coins;
 
     return obj;
 }
