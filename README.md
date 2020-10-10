@@ -1,4 +1,4 @@
-#Trinket Pocket
+![trinket-pocket](img/pocket.svg) # Trinket Pocket
 --
 *A simple team exercise*
 

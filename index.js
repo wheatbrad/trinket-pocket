@@ -1,3 +1,3 @@
 
-const PocketFactory = require('./src/PocketFactory');
+const PocketFactory = require('src/PocketFactory');
 const pocket = PocketFactory();
