@@ -6,6 +6,7 @@ Create a pocket object that can contain coins :moneybag: and trinkets :prayer_be
 
 You cannot have a negative number of coins or trinkets.
 
+**Example Usage:**
 ```javascript
 // initialize pocket
 const pocket = PocketFactory({
@@ -13,13 +14,15 @@ const pocket = PocketFactory({
     trinkets: 2
 });
 
+// purchase 5 trinkets
 pocket.buyTrinkets(5);
 
 // inspect pocket after purchase
 pocket.getPocketedTrinkets();   // 7
 pocket.getPocketedCoins();      // 450
 
-pocket.sellTrinkets(); // only selling 1 trinket
+// only selling 1 trinket
+pocket.sellTrinkets();
 
 // inspect pocket after sale
 pocket.getPocketedTrinkets();   // 6
