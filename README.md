@@ -1,6 +1,6 @@
-![trinket-pocket](img/pocket.svg) # Trinket Pocket
---
-*A simple team exercise*
+# Trinket Pocket<img align="right" width="100" height="100" src="img/pocket.svg">
+---
+**A simple team exercise**
 
 Create a pocket object that can contain coins :moneybag: and trinkets :prayer_beads:. The pocket allows users to `buy()` trinkets for 10 coins, and `sell()` trinkets for 8 coins. You can also return the number of `coins()` or `trinkets()`.
 
