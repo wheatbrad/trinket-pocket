@@ -2,7 +2,7 @@
   "name": "trinket-pocket",
   "version": "1.0.0",
   "description": "Object with methods to buy and sell trinkets.",
-  "main": "",
+  "main": "index.js",
   "directories": {
     "test": "tests"
   },
