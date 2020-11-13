@@ -13,6 +13,11 @@ Object.defineProperties(pocketPrototype, {
             return store.get(this).trinkets;
         }
     },
+    'getTransactionHistory': {
+        value: function () {
+            return store.get(this).transactionHistory;
+        }
+    },
     'buyTrinkets': {
         value: function(numTrinkets = 1) {
             const pocket = store.get(this);
@@ -47,11 +52,17 @@ Object.defineProperties(pocketPrototype, {
 function PocketFactory({coins, trinkets} = {coins: 100, trinkets: 0}) {
     
     const o = Object.create(pocketPrototype);
+    const partition = Object.create(null);
+    const transaction = Object.create(null);
 
-    store.set(o, {
-        coins: (coins | 0) <= 0 ? 0 : coins,
-        trinkets: (trinkets | 0) <= 0 ? 0 : trinkets
-    });
+    partition.coins = (coins | 0) <= 0 ? 0 : coins;
+    partition.trinkets = (trinkets | 0) <= 0 ? 0 : trinkets;
+    
+    transaction.description = 'Account initiation';
+    transaction.timestamp = new Date().toISOString();
+    partition.transactionHistory = [transaction];
+
+    store.set(o, partition);
 
     return o;
 }
