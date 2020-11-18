@@ -1,5 +1,13 @@
 
 const store = new WeakMap();
+const logTransaction = (obj, description) => {
+    const transaction = Object.create(null);
+
+    transaction.description = description;
+    transaction.timestamp = new Date().toISOString();
+
+    obj.transactionHistory.push(transaction);
+}
 const pocketPrototype = Object.create(null);
 
 Object.defineProperties(pocketPrototype, {
@@ -27,16 +35,21 @@ Object.defineProperties(pocketPrototype, {
 
             pocket.coins -= cost;
             pocket.trinkets += numTrinkets;
+            
+            logTransaction(pocket, `Purchased ${numTrinkets} trinkets for ${cost} coins`);
         }
     },
     'sellTrinkets': {
         value: function(numTrinkets = 1) {
             const pocket = store.get(this);
+            const profit = numTrinkets * 8;
 
             if (pocket.trinkets < numTrinkets) return `You only have ${pocket.trinkets} trinkets available to sell`;
 
             pocket.trinkets -= numTrinkets;
-            pocket.coins += numTrinkets * 8;
+            pocket.coins += profit;
+
+            logTransaction(pocket, `Sold ${numTrinkets} trinkets for ${profit} coins`);
         }
     }
 });
@@ -52,17 +65,17 @@ Object.defineProperties(pocketPrototype, {
 function PocketFactory({coins, trinkets} = {coins: 100, trinkets: 0}) {
     
     const o = Object.create(pocketPrototype);
-    const partition = Object.create(null);
+    const instanceProps = Object.create(null);
     const transaction = Object.create(null);
 
-    partition.coins = (coins | 0) <= 0 ? 0 : coins;
-    partition.trinkets = (trinkets | 0) <= 0 ? 0 : trinkets;
-    
     transaction.description = 'Account initiation';
     transaction.timestamp = new Date().toISOString();
-    partition.transactionHistory = [transaction];
+    
+    instanceProps.coins = (coins | 0) <= 0 ? 0 : coins;
+    instanceProps.trinkets = (trinkets | 0) <= 0 ? 0 : trinkets;
+    instanceProps.transactionHistory = [transaction];
 
-    store.set(o, partition);
+    store.set(o, instanceProps);
 
     return o;
 }
